@@ -1,0 +1,7 @@
+<div *ngIf="elem.invalid">
+  <div *ngIf="elem.errors.required">{{name}} cannot be empty</div>
+  <div *ngIf="elem.errors.minlength">{{name}} must contain more than {{elem.errors.minlength.requiredLength - 1}} characters</div>
+  <div *ngIf="elem.errors.maxlength">{{name}} must contain no more than {{elem.errors.maxlength.requiredLength}} characters</div>
+  <div *ngIf="elem.errors.pattern">{{name}} is invalid</div>
+  <div *ngIf="elem.errors.email">{{name}} must have type "abc123@gmail.com"</div>
+</div>

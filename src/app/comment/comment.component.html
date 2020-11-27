@@ -1,0 +1,23 @@
+<div class="comment">
+    <a (click)="closeModal()" class="commentLogoWrapper" [routerLink]="['/user', comment.owner?.id]" routerLinkActive="active">
+        <div class="commentLogo">
+            <p *ngIf="!comment.owner?.avatar">{{comment.owner?.login[0] | uppercase}}</p>
+            <img *ngIf="comment.owner?.avatar" [src]="comment.owner?.avatar">
+        </div>
+    </a>
+    <div class="commentText">
+        <a (click)="closeModal()" [routerLink]="['/user', comment.owner?.id]" routerLinkActive="active">{{comment.owner?.login + ' '}}</a>
+        <div>{{comment.text}}</div>
+    </div>
+    <div class="menuWrapper" *ngIf="comment.owner?.id === currentUser?.id">
+        <a href="#" (click)="openMenu($event)">
+            <img class="menu" src="assets/images/menu.svg">
+        </a>
+    </div>
+    <div @info class="settings" *ngIf="comment.owner?.id === currentUser?.id && isOpenMenu">
+        <div class="wrapper">
+            <a (click)="deleteComment($event)" href="#">Delete</a>
+            <a (click)="updateComment($event)" href="#">Update</a>
+        </div>
+    </div>
+</div>

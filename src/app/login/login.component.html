@@ -1,0 +1,15 @@
+<form class="login" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+    <div class="inputWrapper">
+        <p>login</p>
+        <input type="text" formControlName="login">
+        <app-validation *ngIf="checked" [elem]="login" name="login"></app-validation>
+    </div>
+    <div class="inputWrapper">
+        <p>password</p>
+        <input type="password" formControlName="password">
+        <app-validation *ngIf="checked" [elem]="password" name="password"></app-validation>
+    </div>
+    <div class="buttonWrapper">
+        <button type="submit" class="button">Sing up</button>
+    </div>
+</form>

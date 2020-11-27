@@ -1,0 +1,67 @@
+.auth{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .wrapper{
+        margin: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .logo{
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            @keyframes image {
+                from { 
+                    transform: translateY(-10px); 
+                }
+                50%{
+                    transform: translateY(10px); 
+                }
+                to { 
+                    transform: translateY(-10px); 
+                }
+            }
+            .image{
+                margin-right: 10px;
+                width: 150px;
+                animation: image 5s infinite;
+            }
+            .text{
+                font-size: 62px;
+                text-shadow: 0 0 10px white;
+            }
+        }
+        &Auth{
+            font-size: 24px;
+            font-weight: bold;
+            margin: 5px 0 10px;
+        }
+        .link{
+            margin: 0;
+            a{
+                font-weight: bold;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 350px) {
+    .auth{
+        .wrapper{
+            .logo{
+                flex-direction: column;
+                .image{
+                    margin-right: 0;
+                    width: 150px;
+                }
+                .text{
+                    margin: 10px 0;
+                    font-size: 62px;
+                    text-shadow: 0 0 10px white;
+                }
+            }
+        }
+    }
+}

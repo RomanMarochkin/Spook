@@ -1,0 +1,20 @@
+<div class="auth">
+    <div class="wrapper">
+        <div class="logo">
+            <img class="image" src="assets/images/spook.png" alt="spook">
+            <h1 class="text">spook</h1>
+        </div>
+        <p class="wrapperAuth" *ngIf="path === '/login'">Sing in</p>
+        <p class="wrapperAuth" *ngIf="path === '/registration'">Sing up</p>
+        <app-login *ngIf="path === '/login'"></app-login>
+        <app-registration *ngIf="path === '/registration'"></app-registration>
+        <p class="link" *ngIf="path === '/login'">
+            If you don't have an account, 
+            <a routerLink="/registration" routerLinkActive="active">register</a>
+        </p>
+        <p class="link" *ngIf="path === '/registration'">
+            If you have an account, 
+            <a routerLink="/login" routerLinkActive="active">login</a>
+        </p>
+    </div>
+</div>

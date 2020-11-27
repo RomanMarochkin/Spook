@@ -1,0 +1,184 @@
+.usersPage{
+    width: 100%;
+    .headerWrapper{
+        img{
+            margin-left: 10px;
+            height: 30px;
+        }
+    }
+    main{
+        margin-top: 45px;
+        .users{
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            .userCard:hover{
+                transform: scale(1.05);
+            }
+            .userCard{
+                transition: transform .5s ease;
+                width: 15%;
+                margin: 2.5%;
+                background-color: #2d2f36;
+                box-shadow: 0 0 15px #2d2f36;
+                border-radius: 20px;
+                .user{
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 20px 0;
+                    .logoWrapper{
+                        width: 60%;
+                        padding-top: 60%;
+                        position: relative;
+                        .logo{
+                            overflow: hidden;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 100%;
+                            box-shadow: 0 0 15px white;
+                            background-color: white;
+                            color: #2d2f36;
+                            font-size: 5vw;
+                            font-weight: bold;
+                            img{
+                                position: absolute;
+                                max-width: 100%;
+                                max-height: 100%;
+                            }
+                        }
+                    }
+                    p{
+                        font-size: 24px;
+                        font-weight: bold;
+                        margin: 10px 0;
+                    }
+                    .buttonWrapper{
+                        display: flex;
+                        justify-content: center;
+                        .button{
+                            padding: 7px 20px;
+                            font-size: 24px;
+                            font-weight: bold;
+                            border: 0;
+                            border-radius: 10px;
+                            box-shadow: 0 0 5px white;
+                            background-color: white;
+                            color: #393b44;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.preloader{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2d2f36;
+    z-index: 2000;
+}
+@media only screen and (max-width: 1200px) {
+    .usersPage{
+        main{
+            .users{
+                .userCard{
+                    width: 20%;
+                    margin: 2.5%;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 992px) {
+    .usersPage{
+        main{
+            .users{
+                .userCard{
+                    width: 27.3%;
+                    margin: 3%;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .usersPage{
+        main{
+            .users{
+                .userCard{
+                    width: 40%;
+                    margin: 5%;
+                    .user{
+                        padding: 30px 0;
+                        p{
+                            font-size: 32px;
+                            margin: 20px 0;
+                        }
+                        .buttonWrapper{
+                            .button{
+                                font-size: 32px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    .usersPage{
+        main{
+            margin-top: 140px;
+            .users{
+                .userCard{
+                    width: 70%;
+                    margin: 15%;
+                    .user{
+                        padding: 40px 0;
+                        p{
+                            font-size: 36px;
+                            margin: 24px 0;
+                        }
+                        .buttonWrapper{
+                            .button{
+                                font-size: 36px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 350px) {
+    .usersPage{
+        main{
+            .users{
+                .userCard{
+                    .user{
+                        .buttonWrapper{
+                            .button{
+                                font-size: 10vw;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

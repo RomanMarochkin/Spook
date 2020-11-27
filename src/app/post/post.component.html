@@ -1,0 +1,46 @@
+<div class="imagePostModalWrapper" (window:resize)="resize()">
+    <img *ngIf="windowWidth <= 600" (click)="closeModal()" class="close" src="assets/images/close.svg">
+    <div class="modal" (click)="$event.stopPropagation()">
+        <div class="imageWrapper" [ngStyle]="windowWidth <= 600 && {'height': windowWidth + 'px'}">
+            <img *ngIf="post?.imgUrl" @info [src]="post?.imgUrl">
+        </div>
+        <div class="postInfo">
+            <div class="wrapper1">
+                <div class="logoWrapper">
+                    <p *ngIf="!user?.avatar">{{user?.login[0] | uppercase}}</p>
+                    <img [src]="user?.avatar" *ngIf="user?.avatar">
+                </div>
+                <div class="loginWrapper">
+                    <p class="login">{{user?.login}}</p>
+                    <a (click)="followUser(user?.id, $event)" *ngIf="user?.id !== currentUser?.id" href="#">{{isFollow? 'Unfollow': 'Follow'}}</a>
+                </div>
+            </div>
+            <div class="wrapper2" [ngStyle]="windowWidth <= 600 && {'min-height': 'calc(100vh - ' + (windowWidth + 181) + 'px)'}">
+                <div class="comment" *ngFor="let comment of comments" @removeComent>
+                    <app-comment 
+                    [closeModal]="closeModal"
+                    [currentUser]="currentUser"
+                    [comment]="comment"
+                    [isUpdateComment]="isUpdateComment"
+                    (isUpdateCommentChange)="isUpdateComment = $event"
+                    ></app-comment>
+                </div>
+            </div>
+            <div class="wrapper3">
+                <svg *ngIf="!isLiked" (click)="likePost()" fill="#ffffff" class="like" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 412.735 412.735" style="enable-background:new 0 0 412.735 412.735;" xml:space="preserve"><g><g><path d="M295.706,35.522C295.706,35.522,295.706,35.522,295.706,35.522c-34.43-0.184-67.161,14.937-89.339,41.273c-22.039-26.516-54.861-41.68-89.339-41.273C52.395,35.522,0,87.917,0,152.55C0,263.31,193.306,371.456,201.143,375.636c3.162,2.113,7.286,2.113,10.449,0c7.837-4.18,201.143-110.759,201.143-223.086C412.735,87.917,360.339,35.522,295.706,35.522z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                <svg *ngIf="isLiked" (click)="likePost()" fill="#ff0000" class="like" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 412.735 412.735" style="enable-background:new 0 0 412.735 412.735;" xml:space="preserve"><g><g><path d="M295.706,35.522C295.706,35.522,295.706,35.522,295.706,35.522c-34.43-0.184-67.161,14.937-89.339,41.273c-22.039-26.516-54.861-41.68-89.339-41.273C52.395,35.522,0,87.917,0,152.55C0,263.31,193.306,371.456,201.143,375.636c3.162,2.113,7.286,2.113,10.449,0c7.837-4.18,201.143-110.759,201.143-223.086C412.735,87.917,360.339,35.522,295.706,35.522z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                <p *ngIf="post?.likes?.length === 0" class="likes">No likes</p>
+                <p *ngIf="post?.likes?.length > 0 && post?.likes?.length < 2" class="likes">Likes {{post?.likes[0]?.login}}</p>
+                <p *ngIf="post?.likes?.length > 1" class="likes">Likes {{post?.likes[0]?.login}} and {{post?.likes?.length - 1}} other...</p>
+            </div>
+            <form *ngIf="!isUpdateComment" class="wrapper4" [formGroup]="createCommentForm" (ngSubmit)="createComment()">
+                <input type="text" formControlName="text">
+                <button type="submit">Send</button>
+            </form>
+            <form *ngIf="isUpdateComment" class="wrapper4" [formGroup]="updateCommentForm" (ngSubmit)="UpdateComment()">
+                <input type="text" formControlName="text">
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+</div>

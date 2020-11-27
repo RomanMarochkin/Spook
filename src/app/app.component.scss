@@ -1,0 +1,17 @@
+.error{
+    position: absolute;
+    padding: 20px;
+    right: 20px;
+    top: 20px;
+    width: 160px;
+    min-height: 80px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px white;
+    color: black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}

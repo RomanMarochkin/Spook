@@ -1,0 +1,64 @@
+.comment{
+    display: grid;
+    grid-template-columns: 0fr 4fr 0fr;
+    grid-template-areas: 
+        "a a a"
+        "b b b"
+    ;
+    .commentLogoWrapper{
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        overflow: hidden;
+        display: block;
+        .commentLogo{
+            width: 40px;
+            height: 40px;
+            background-color: #2d2f36;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img{
+                max-width: 100%;
+                max-height: 100%;
+            }
+            p{
+                margin: 0;
+                font-size: 24px;
+                font-weight: bold;
+            }
+        }
+    }
+    .commentText{
+        margin-left: 10px;
+        a{
+            font-weight: bold;
+        }
+    }
+    .menuWrapper{
+        height: 40px;
+        display: flex;
+        align-items: center;
+        a{
+            display: block;
+            .menu{
+                height: 20px;
+                display: block;
+            }
+        }
+    }
+    .settings{
+        grid-area: b;
+        height: 30px;
+        overflow: hidden;
+        .wrapper{
+            height: 30px;
+            display: flex;
+            align-items: center;
+            a{
+                font-weight: bold;
+                margin: 0 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,78 @@
+<div class="preloader" @preloader *ngIf="isLoading">
+    <app-preloader></app-preloader>
+</div>
+<div [class]="isOpenImagePostModal? 'userPage hidden' : 'userPage'" (window:resize)="resize()">
+    <div class="headerWrapper">
+        <app-header [isSearch]="false" [login]="userInfo.userById?.login">
+            <a href="#" (click)="$event.preventDefault()"><img [ngStyle]="windowWidth <= 400 && {'margin' : '0 ' + windowWidth / 40 + 'px', 'width' : windowWidth / 10 + 'px','height' : windowWidth / 10 + 'px'}" (click)="openMenu()" src="assets/images/grid.svg"></a>
+        </app-header>
+    </div>
+    <main *ngIf="windowWidth > 600" [@main]="isOpenMenu ? true : false">
+        <div class="postWrapper" *ngFor="let post of userInfo.userById?.posts">
+            <div class="post" (click)="getPost(post._id)">
+                <img [src]="post.imgUrl">
+            </div>
+        </div>
+    </main>
+    <main *ngIf="windowWidth <= 600" [@main2]="isOpenMenu ? true : false">
+        <div class="postWrapper" *ngFor="let post of userInfo.userById?.posts">
+            <div class="post" (click)="getPost(post._id)">
+                <img [src]="post.imgUrl">
+            </div>
+        </div>
+    </main>
+    <div @info *ngIf="isUserInfo" class="info">
+        <img (click)="setUserInfo()" class="close" src="assets/images/close.svg">
+        <div class="wrapper">
+            <div class="descriptionWrapper">
+                <div class="logoWrapper">
+                    <div *ngIf="!userInfo.userById?.avatar" class="logo">{{userInfo.userById?.login[0] | uppercase}}</div>
+                    <div *ngIf="userInfo.userById?.avatar" class="logo">
+                        <img [src]="userInfo.userById?.avatar">
+                    </div>
+                    <div class="login">{{userInfo.userById?.login}}</div>
+                </div>
+                <div class="description">
+                    <ul>
+                        <li><b>{{userInfo.userById?.posts?.length}}</b> posts</li>
+                        <li><a [routerLink]="['/user', userInfo.userById?.id, 'followers']" routerLinkActive="active"><b>{{userInfo.followersAndFollowing?.followers?.length}}</b> followers</a></li>
+                        <li><a [routerLink]="['/user', userInfo.userById?.id, 'followings']" routerLinkActive="active"><b>{{userInfo.followersAndFollowing?.following?.length}}</b> followings</a></li>
+                    </ul>
+                    <button *ngIf="user?._id !== userInfo.currentUser?.id" (click)="followUser(user?._id)" class="follow">{{user.isFollow? 'Unfollow': 'Follow'}}</button>
+                    <button *ngIf="user?._id === userInfo.currentUser?.id" (click)="isOpenPostModal = true" class="follow">Add post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div @menu class="menu" *ngIf="isOpenMenu && windowWidth > 600">
+        <img (click)="setUserInfo()" class="currentUser" src="assets/images/user.svg">
+    </div>
+    <div @menu2 class="menu" *ngIf="isOpenMenu && windowWidth <= 600">
+        <img (click)="setUserInfo()" class="currentUser" src="assets/images/user.svg">
+    </div>
+    <div @info class="postModalWrapper" *ngIf="isOpenPostModal" (click)="isOpenPostModal = false">
+        <div class="modal" (click)="$event.stopPropagation()">
+            <p class="logo">Add post</p>
+            <label class="inputWrapper">
+                <input type="text" placeholder="title" #postTitle>
+            </label>
+            <label class="file">
+                Add post
+                <input type="file" *ngIf="postTitle.value.length" (change)="addPost($event.target, postTitle.value)"/>
+            </label>
+        </div>
+    </div>
+    <div @info class="postModalWrapper2" *ngIf="isOpenImagePostModal" >
+        <app-post 
+            (click)="closePost()" 
+            [isLiked]="isLiked"
+            [post]="post" 
+            [user]="userInfo?.userById" 
+            [currentUser]="userInfo?.currentUser" 
+            [isFollow]="user?.isFollow"
+            [comments]="comments"
+            [isOpenImagePostModal]="isOpenImagePostModal"
+            (isOpenImagePostModalChange)="isOpenImagePostModal = $event">
+        </app-post>
+    </div>
+</div>

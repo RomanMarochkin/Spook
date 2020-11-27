@@ -1,0 +1,44 @@
+<div class="preloader" @preloader *ngIf="isLoading">
+    <app-preloader></app-preloader>
+</div>
+<div [class]="isOpenImagePostModal? 'feed hidden' : 'feed'" (window:resize)="resize()">
+    <div class="headerWrapper">
+        <app-header [isSearch]="false" login="Feed"></app-header>
+    </div>
+    <main>
+        <div class="feedList">
+            <div class="card" *ngFor="let post of userInfo?.feed">
+                <div (click)="getPost(post._id)" class="postImageWrapper" [ngStyle]="windowWidth <= 600 && {'height': windowWidth + 'px'}">
+                    <img class="postImage" [src]="post.imgUrl">
+                </div>
+                <div class="likes">
+                    <div *ngIf="post.isLiked === undefined">
+                        <svg *ngIf="!isLikedPost(post)" (click)="likePost(post._id, post)" fill="#ffffff" class="like" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 412.735 412.735" style="enable-background:new 0 0 412.735 412.735;" xml:space="preserve"><g><g><path d="M295.706,35.522C295.706,35.522,295.706,35.522,295.706,35.522c-34.43-0.184-67.161,14.937-89.339,41.273c-22.039-26.516-54.861-41.68-89.339-41.273C52.395,35.522,0,87.917,0,152.55C0,263.31,193.306,371.456,201.143,375.636c3.162,2.113,7.286,2.113,10.449,0c7.837-4.18,201.143-110.759,201.143-223.086C412.735,87.917,360.339,35.522,295.706,35.522z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                        <svg *ngIf="isLikedPost(post)" (click)="likePost(post._id, post)" fill="#ff0000" class="like" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 412.735 412.735" style="enable-background:new 0 0 412.735 412.735;" xml:space="preserve"><g><g><path d="M295.706,35.522C295.706,35.522,295.706,35.522,295.706,35.522c-34.43-0.184-67.161,14.937-89.339,41.273c-22.039-26.516-54.861-41.68-89.339-41.273C52.395,35.522,0,87.917,0,152.55C0,263.31,193.306,371.456,201.143,375.636c3.162,2.113,7.286,2.113,10.449,0c7.837-4.18,201.143-110.759,201.143-223.086C412.735,87.917,360.339,35.522,295.706,35.522z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                    </div>
+                    <div *ngIf="post.isLiked !== undefined">
+                        <svg *ngIf="!post.isLiked" (click)="likePost(post._id, post)" fill="#ffffff" class="like" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 412.735 412.735" style="enable-background:new 0 0 412.735 412.735;" xml:space="preserve"><g><g><path d="M295.706,35.522C295.706,35.522,295.706,35.522,295.706,35.522c-34.43-0.184-67.161,14.937-89.339,41.273c-22.039-26.516-54.861-41.68-89.339-41.273C52.395,35.522,0,87.917,0,152.55C0,263.31,193.306,371.456,201.143,375.636c3.162,2.113,7.286,2.113,10.449,0c7.837-4.18,201.143-110.759,201.143-223.086C412.735,87.917,360.339,35.522,295.706,35.522z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                        <svg *ngIf="post.isLiked" (click)="likePost(post._id, post)" fill="#ff0000" class="like" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 412.735 412.735" style="enable-background:new 0 0 412.735 412.735;" xml:space="preserve"><g><g><path d="M295.706,35.522C295.706,35.522,295.706,35.522,295.706,35.522c-34.43-0.184-67.161,14.937-89.339,41.273c-22.039-26.516-54.861-41.68-89.339-41.273C52.395,35.522,0,87.917,0,152.55C0,263.31,193.306,371.456,201.143,375.636c3.162,2.113,7.286,2.113,10.449,0c7.837-4.18,201.143-110.759,201.143-223.086C412.735,87.917,360.339,35.522,295.706,35.522z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                    </div>
+                    <p *ngIf="post?.likes?.length === 0" class="likes">No likes</p>
+                    <p *ngIf="post?.likes?.length > 0 && post?.likes?.length < 2" class="likes">Likes {{post?.likes[0]?.login}}</p>
+                    <p *ngIf="post?.likes?.length > 1" class="likes">Likes {{post?.likes[0]?.login}} and {{post?.likes?.length - 1}} other...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div @info class="postModalWrapper" *ngIf="isOpenImagePostModal">
+        <app-post 
+            (click)="closePost()" 
+            [isLiked]="isLiked"
+            [post]="post" 
+            [user]="userInfo?.userById" 
+            [currentUser]="userInfo?.currentUser" 
+            [isFollow]="user?.isFollow"
+            [comments]="comments"
+            [isOpenImagePostModal]="isOpenImagePostModal"
+            (isOpenImagePostModalChange)="isOpenImagePostModal = $event"
+            (isFollowChange)="changeIsFollow($event)"
+        ></app-post>
+    </div>
+</div>

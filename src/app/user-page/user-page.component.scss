@@ -1,0 +1,314 @@
+.userPage{
+    width: 100%;
+    .headerWrapper{
+        img{
+            margin-left: 10px;
+            height: 30px;
+        }
+    }
+    main{
+        margin-top: 45px;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        .postWrapper{
+            width: 20%;
+            padding-top: 20%;
+            position: relative;
+            margin: 2.5%;
+            .post{
+                background-color: #2d2f36;
+                box-shadow: 0 0 15px #2d2f36;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img{
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            }
+        }
+    }
+    .info{
+        margin-top: 45px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: #2d2f36;
+        z-index: 100;
+        border-radius: 0 0 0 20px;
+        box-shadow: 0 0 15px #2d2f36;
+        .close{
+            width: 40px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .wrapper{
+            margin: 30px;
+            .descriptionWrapper{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                .logoWrapper{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .logo{
+                        background-color: #393b44;
+                        width: 190px;
+                        height: 190px;
+                        border-radius: 100%;
+                        overflow: hidden;
+                        box-shadow: 0 0 10px #393b44;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 80px;
+                        font-weight: bold;
+                        img{
+                            max-width: 100%;
+                            max-height: 100%;
+                        }
+                    }
+                    .login{
+                        margin-top: 10px;
+                        font-size: 24px;
+                        font-weight: bold;
+                    }
+                }
+                .description{
+                    display: flex;
+                    flex-direction: column;
+                    ul{
+                        list-style-type: none;
+                        padding: 0;
+                        li{
+                            font-size: 24px;
+                            margin: 10px 0;
+                        }
+                    }
+                    .follow{
+                        padding: 7px 20px;
+                        width: 250px;
+                        font-size: 24px;
+                        font-weight: bold;
+                        border: 0;
+                        border-radius: 10px;
+                        box-shadow: 0 0 5px white;
+                        background-color: white;
+                        color: #393b44;
+                    }
+                }
+            }
+        }
+    }
+    .menu{
+        margin-top: 45px;
+        padding: 15px 5px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 99;
+        width: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #2d2f36;
+        box-shadow: 0 0 15px #2d2f36;
+        border-radius: 0 0 0 15px;
+        .currentUser{
+            width: 40px;
+        }
+    }
+    .postModalWrapper{
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #393b4480;
+        z-index: 200;
+        .modal{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #2d2f36;
+            box-shadow: 0 0 15px #2d2f36;
+            border-radius: 15px;
+            height: 230px;
+            width: 200px;
+            .logo{
+                margin: 0;
+                margin-top: 10px;
+                font-size: 32px;
+                font-weight: bold;
+                text-shadow: 0 0 3px white;
+            }
+            .inputWrapper{
+                width: 100%;
+                background-color: white;
+                overflow: hidden;
+                border-radius: 10px;
+                box-shadow: 0 0 5px white;
+                input{
+                    font-size: 18px;
+                    margin: 5px;
+                    border: 0;
+                    outline: 0;
+                }
+            }
+            .file{
+                width: 100%;
+                padding: 7px 0;
+                display: flex;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: bold;
+                border: 0;
+                border-radius: 10px;
+                box-shadow: 0 0 5px white;
+                background-color: white;
+                color: #393b44;
+                input{
+                    display: none;
+                }
+            }
+        }
+    }
+    .postModalWrapper2{
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #393b4480;
+        z-index: 200;
+    }
+}
+.preloader{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2d2f36;
+    z-index: 2000;
+}
+@media only screen and (max-width: 992px) {
+    .userPage{
+        main{
+            .postWrapper{
+                width: 27.3%;
+                padding-top: 27.3%;
+                margin: 3%;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .userPage{
+        main{
+            .postWrapper{
+                width: 40%;
+                margin: 5%;
+                padding-top: 40%;
+            }
+        }
+        .info{
+            margin-top: 0;
+            margin-top: 45px;
+            border-radius: 0;
+            width: 100vw;
+            height: calc(100vh - 45px);;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #2f3138;
+            .wrapper{
+                margin: 30px;
+                position: absolute;
+                .descriptionWrapper{
+                    flex-direction: row;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    .description{
+                        margin-left: 40px;
+                        .follow{
+                            width: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    .userPage{
+        .headerWrapper{
+            img{
+                margin: 0 10px;
+                height: 40px;
+            }
+        }
+        main{
+            margin-top: 140px;
+            .postWrapper{
+                width: 80%;
+                margin: 10%;
+                padding-top: 80%;
+            }
+        }
+        .menu{
+            margin-top: 140px;
+            width: 100vw;
+            padding: 15px 0;
+            left: 0;
+            border-radius: 0;
+            .currentUser{
+                width: 50px;
+            }
+        }
+        .info{
+            margin-top: 140px;
+            height: calc(100vh - 140px);
+            .close{
+                width: 50px;
+            }
+            .wrapper{
+                .descriptionWrapper{
+                    flex-direction: column;
+                    .description{
+                        justify-content: center;
+                        margin-left: 0;
+                        ul{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .hidden{
+        height: 0;
+        overflow: hidden;
+    }
+}

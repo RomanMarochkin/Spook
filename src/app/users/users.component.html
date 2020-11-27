@@ -1,0 +1,27 @@
+<div class="preloader" @preloader *ngIf="isLoading">
+    <app-preloader></app-preloader>
+</div>
+<div class="usersPage">
+    <app-header [isSearch]="true"></app-header>
+    <main>
+        <div class="users">
+            <div class="userCard" *ngFor="let user of users.usersList" [routerLink]="['/user', user._id]">
+                <div class="user">
+                    <div *ngIf="!user.avatar" class="logoWrapper">
+                        <div class="logo">{{user.login[0] | uppercase}}</div>
+                    </div>
+                    <div *ngIf="user.avatar" class="logoWrapper">
+                        <div class="logo">
+                            <img [src]="user.avatar">
+                        </div>
+                    </div>
+                    <p *ngIf="user.login.length < 11">{{user.login}}</p>
+                    <p [title]="user.login" *ngIf="user.login.length >= 11">{{getShortLogin(user.login)}}</p>
+                    <div class="buttonWrapper" *ngIf="userInfo.currentUser?.id !== user._id">
+                        <button (click)="followUser(user._id, $event)" class="button">{{user.isFollow? 'Unfollow' : 'Follow'}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

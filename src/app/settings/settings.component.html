@@ -1,0 +1,66 @@
+<div class="preloader" @preloader *ngIf="isLoading">
+    <app-preloader></app-preloader>
+</div>
+<div class="settings">
+    <div class="headerWrapper">
+        <app-header [isSearch]="false" login="Settings"></app-header>
+    </div>
+    <main>
+        <div class="wrapper">
+            <label class="imageWrapper">
+                <p *ngIf="!profileForm.value?.avatar">{{userInfo.currentUser?.login[0] | uppercase}}</p>
+                <img class="avatar" *ngIf="profileForm.value?.avatar" [src]="profileForm.value?.avatar">
+                <input type="file" (change)="setAvatar($event.target.files[0])">
+                <div class="addWrapper">
+                    <img class="add" src="assets/images/add.svg">
+                </div>
+            </label>
+            <form class="form" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+                <div class="formWrapper">
+                    <div class="inputWrapper">
+                        <p>login</p>
+                        <input type="text" formControlName="login">
+                        <app-validation *ngIf="checked" [elem]="formLogin" name="login"></app-validation>
+                    </div>
+                    <div class="inputWrapper">
+                        <p>email</p>
+                        <input type="text" formControlName="email">
+                        <app-validation *ngIf="checked" [elem]="formEmail" name="email"></app-validation>
+                    </div>
+                </div>
+                <div class="formWrapper">
+                    <div class="inputWrapper">
+                        <p>first name</p>
+                        <input type="text" formControlName="firstName">
+                        <app-validation *ngIf="checked" [elem]="formFirstName" name="firstName"></app-validation>
+                    </div>
+                    <div class="inputWrapper">
+                        <p>last name</p>
+                        <input type="text" formControlName="lastName">
+                        <app-validation *ngIf="checked" [elem]="formLastName" name="lastName"></app-validation>
+                    </div>
+                </div>
+                <div class="buttonWrapper">
+                    <button type="submit" class="button">Save profile</button>
+                </div>
+            </form>
+            <form class="form" [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
+                <div class="formWrapper">
+                    <div class="inputWrapper">
+                        <p>password</p>
+                        <input type="password" formControlName="password">
+                        <app-validation *ngIf="checkedPassword" [elem]="formPassword" name="password"></app-validation>
+                    </div>
+                    <div class="inputWrapper">
+                        <p>confirm password</p>
+                        <input type="password" formControlName="confirmPassword">
+                        <app-validation *ngIf="checkedPassword" [elem]="formConfirmPassword" name="confirmPassword"></app-validation>
+                    </div>
+                </div>
+                <div class="buttonWrapper">
+                    <button type="submit" class="button">Save password</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
